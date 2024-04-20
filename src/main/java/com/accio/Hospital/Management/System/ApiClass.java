@@ -48,4 +48,15 @@ public class ApiClass {
         Patient patientInfo = patientDb.get(key);
         return patientInfo;
     }
+
+    @GetMapping("getPatientByNameAndMobileNumber")
+    public Patient getPatientBynameAndMobNo(@RequestParam("patientName") String patientName,
+                                            @RequestParam("patientMobileNumber") Long mobileNumber){
+        for(Patient patient: patientDb.values()){
+            if(patient.getPatientName().equals(patientName) && patient.getMobileNumber().equals(mobileNumber)){
+                return patient;
+            }
+        }
+        return null;
+    }
 }
